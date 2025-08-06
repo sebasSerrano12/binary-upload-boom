@@ -2,6 +2,7 @@ const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 
 module.exports = {
+  //Profile is the page where the user can see their own posts
   getProfile: async (req, res) => {
     try {
       //Since we have a session, each req contains the logged-in user's info: req.user
@@ -14,6 +15,16 @@ module.exports = {
       console.log(err);
     }
   },
+  ///Feed is the public page where all posts are shown
+  getFeed: async (req, res) => {
+  try {
+    const posts = await Post.find().sort({ createdAt: "desc" }).lean();
+    res.render("feed.ejs", { posts, user: req.user });
+  } catch (err) {
+    console.log(err);
+    res.render("error/500");
+  }
+},
   getPost: async (req, res) => {
     try {
       //id parameter comes from the post routes

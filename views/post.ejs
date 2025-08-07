@@ -1,38 +1,29 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-6">
-      <h2><%= post.title %></h2>
-      <img class="img-fluid" src="<%= post.image%>" />
-      <div class="row justify-content-between">
-        <form
-          class="col-1"
-          action="/post/likePost/<%= post.id %>?_method=PUT"
-          method="POST"
-        >
-          <button class="btn btn-primary fa fa-heart" type="submit"></button>
-        </form>
-        <h3 class="col-3">Likes: <%= post.likes %></h3>
-        <%if(post.user == user.id){ %>
-        <form
-          action="/post/deletePost/<%= post.id %>?_method=DELETE"
-          method="POST"
-          class="col-3"
-        >
-          <button class="btn btn-primary fa fa-trash" type="submit"></button>
-        </form>
-        <%}%>
-      </div>
+<main class="container min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-2xl bg-white rounded-lg shadow-md p-8 flex flex-col items-center">
+    <h2 class="text-2xl font-bold mb-4 text-center"><%= post.title %></h2>
+    <img class="img-fluid rounded mb-4" src="<%= post.image%>" />
+    <div class="flex items-center justify-center gap-x-6 mb-4 w-full">
+      <form action="/post/likePost/<%= post.id %>?_method=PUT" method="POST">
+        <button type="submit" class="bg-pink-400 hover:bg-pink-600 text-white rounded-md p-1.5 transition-colors duration-300">
+          <i class="fa fa-heart fa-sm"></i>
+        </button>
+      </form>
+      <h3 class="text-sm">Likes: <%= post.likes %></h3>
+      <%if(post.user == user.id){ %>
+      <form action="/post/deletePost/<%= post.id %>?_method=DELETE" method="POST">
+        <button type="submit" class="bg-red-400 hover:bg-red-600 text-white rounded-md p-1.5 transition-colors duration-300">
+          <i class="fa fa-trash"></i>
+        </button>
+      </form>
+      <%}%>
     </div>
-    <div class="col-3 mt-5">
-      <p><%= post.caption %></p>
-    </div>
-
-    <div class="col-6 mt-5">
-      <a class="btn btn-primary" href="/profile">Return to Profile</a>
-      <a class="btn btn-primary" href="/feed">Return to Feed</a>
+    <p class="text-gray-700 mb-6 text-center"><%= post.caption %></p>
+    <div class="flex gap-x-4">
+      <a class="rounded px-4 py-2 text-white bg-blue-400 hover:bg-blue-600 transition-colors duration-500" href="/profile">Return to Profile</a>
+      <a class="rounded px-4 py-2 text-white bg-blue-400 hover:bg-blue-600 transition-colors duration-500" href="/feed">Return to Feed</a>
     </div>
   </div>
-</div>
+</main>
 
 <%- include('partials/footer') -%>

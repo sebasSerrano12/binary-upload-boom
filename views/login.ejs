@@ -1,17 +1,17 @@
 <%- include('partials/header') -%>
 
-<main class="container">
-  <div class="row justify-content-center">
-    <section class="col-6 mt-5">
+<main class="container min-h-screen flex items-center justify-center">
+  <section class="w-full max-w-md bg-white rounded-lg shadow-md p-8 flex flex-col items-center">
       <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
       <div class="alert alert-danger"><%= el.msg %></div>
       <% }) %> <% } %> <% if (locals.messages.info) { %> <%
       messages.info.forEach( el => { %>
       <div class="alert alert-info"><%= el.msg %></div>
       <% }) %> <% } %>
-      <form action="/login" method="POST">
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <form action="/login" method="POST" class="w-full flex flex-col items-center">
+        <div class="mb-3 w-full flex flex-col items-center">
+          <h1 class="text-3xl font-bold pb-4 text-center">Log in</h1>
+          <label for="exampleInputEmail1" class="form-label self-start">Email address:</label>
           <input
             type="email"
             class="form-control"
@@ -20,8 +20,8 @@
             name="email"
           />
         </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
+        <div class="mb-3 w-full flex flex-col items-center">
+          <label for="exampleInputPassword1" class="form-label self-start">Password:</label>
           <input
             type="password"
             class="form-control"
@@ -29,7 +29,7 @@
             name="password"
           />
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="rounded px-4 py-2 text-white bg-blue-400 hover:bg-blue-600 transition-colors duration-500">Submit</button>
       </form>
     </section>
   </div>
